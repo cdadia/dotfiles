@@ -48,5 +48,7 @@ zstyle ':omz:load' omodule \
 zstyle ':omz:module:prompt' theme 'sorin'
 
 # This will make you shout: OH MY ZSHELL!
-source "$OMZ/init.zsh"
+if [[ -s "${ZDOTDIR:-$HOME}/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/init.zsh"
+fi
 
