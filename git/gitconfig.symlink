@@ -58,3 +58,6 @@
         autocorrect = 1
 [http]
 	sslverify = no
+[user]
+	name = cdadia
+	email = cdadia@gmail.com
