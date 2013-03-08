@@ -50,7 +50,7 @@ set -g window-status-format "#[fg=white,bg=colour234] #I #W "
 set -g window-status-current-format "#[fg=colour234,bg=colour39]⮀#[fg=colour25,bg=colour39,noreverse,bold] #I ⮁ #W #[fg=colour39,bg=colour234,nobold]⮀"
 
 # prefix-v creates pane layout optimized for vim development
-bind v source-file ~/.tmux/vimdev
+#bind v source-file ~/.tmux/vimdev
 
 bind - run "~/.tmux/split-cwd.rb -v"
 bind | run "~/.tmux/split-cwd.rb -h"
