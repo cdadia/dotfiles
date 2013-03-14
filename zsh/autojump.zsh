@@ -1,1 +1,5 @@
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh 
+if [ -f `brew --prefix`/etc/autojump ]; then
+    . `brew --prefix`/etc/autojump
+elif [ -f `brew --prefix`/etc/autojump.zsh ]; then
+    . `brew --prefix`/etc/autojump.zsh
+fi

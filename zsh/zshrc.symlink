@@ -19,6 +19,8 @@ source $ZSH/oh-my-zsh.sh
 
 for config_file ($HOME/.dotfiles/**/*.zsh) source $config_file
 
+setopt extended_glob
+
 # source every .zsh file in this rep
 for config_file ($ZSH/custom/*.zsh) source $config_file
 
@@ -33,11 +35,8 @@ fi
 autoload -U compinit
 compinit
 
-# load prezto
-#source $ZSH/omz.inc
-
 # load every completion after autocomplete loads
-#for config_file ($ZSH/**/completion.sh) source $config_file
+for config_file ($ZSH/**^external/completion.sh) source $config_file
 
 if which tmux 2>&1 >/dev/null; then
    test -z "$TMUX" && tmux new-session && exit

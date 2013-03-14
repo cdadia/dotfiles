@@ -56,3 +56,9 @@ bind - run "~/.tmux/split-cwd.rb -v"
 bind | run "~/.tmux/split-cwd.rb -h"
 
 set -sg escape-time 0
+
+# Use up and down arrows for temporary "maximize" (from https://gist.github.com/3706467)
+unbind ]
+bind ] new-window -d -n tmp \; swap-pane -s tmp.0 \; select-window -t tmp
+unbind [
+bind [ last-window \; swap-pane -s tmp.0 \; kill-window -t tmp

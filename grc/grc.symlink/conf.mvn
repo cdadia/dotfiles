@@ -1,0 +1,29 @@
+# error
+regexp=ERROR
+colours=red
+count=more
+======
+# warn
+regexp=WARNING
+colours=yellow
+count=more
+======
+# goals
+regexp=--- .+:.+:.+ (.+) @ .+ ---
+colours=cyan
+count=once
+======
+# project-start
+regexp= Building .*
+colours=magenta
+count=once
+======
+# build failure
+regexp= BUILD FAILURE
+colours=red
+count=once
+======
+# build success
+regexp= BUILD SUCCESS
+colours=green
+count=once

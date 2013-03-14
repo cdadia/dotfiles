@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'etc'
-$scalaVersion = "2.9.2"
-$scalazVersion = "7.0.0-M3"
+$scalaVersion = "2.10.0"
+$scalazVersion = "7.0.0-M7"
 $repository = "#{Etc.getpwuid.dir}/.m2/repository"
 
 def dep(g, a, v)
