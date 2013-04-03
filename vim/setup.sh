@@ -1,2 +1,2 @@
 #!/bin/bash
-bash < <(curl -Ls https://github.com/mpilquist/vim-mpilquist/raw/master/scripts/setup.sh)
+bash < <(curl -Ls https://github.com/cdadia/vim-cdadia/raw/master/scripts/setup.sh)
