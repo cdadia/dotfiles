@@ -39,6 +39,8 @@
         ignore=!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore ])
         co = !sh -c '[ `git tracked | awk '\\''{print $1}'\\'' | grep $1 |  wc -l` == "1" ] &&  git checkout $1 || git remote-branch $1' -
         cc = commit -c HEAD --reset-author
+        ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
+        theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
 
 [color]
         diff = auto
