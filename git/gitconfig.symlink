@@ -9,7 +9,7 @@
         wtf     = !$ZSH/bin/git-wtf
         rank-contributers = !$ZSH/bin/git-rank-contributers
         count   = !git shortlog -sn
-        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
         who = !git shortlog -s -- $GIT_PREFIX | sort -r | head -n 10
         whosince = !sh -c 'git shortlog -s --since=$1 -- $GIT_PREFIX | sort -r | head -n 10' -
         tracked = "for-each-ref --format='%(refname:short) <- %(upstream:short)' refs/heads"
