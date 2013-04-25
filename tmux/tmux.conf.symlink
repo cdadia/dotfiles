@@ -18,7 +18,7 @@ set-option -g mouse-resize-pane on
 set -g mouse-utf8 on
 
 # From the mighty Tim Visher! ^_^
-bind-key R source-file ~/.tmux.conf; display-message "source-file done"
+bind-key R source-file ~/.tmux.conf \; display-message "source-file done"
 
 setw -g mode-keys vi
 set-option -g status-keys vi
