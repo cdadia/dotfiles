@@ -31,6 +31,7 @@
         cc = commit -c HEAD --reset-author
         ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
         theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+        stat = status
 
 [color]
         diff = auto
