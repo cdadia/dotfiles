@@ -18,26 +18,16 @@
         remote-branch = !sh -c 'git checkout -b $1 origin/$1' -
         local = !git local-branch
         up = !git checkout `git tracked | grep ^\\`git branch-name\\` | head -n 1 | awk '{print $3}' | sed s/origin\\\\\\///g`
+        down = !sh -c '[ `git tracked | grep \\`git branch-name\\` | grep -vi origin |  wc -l` == "1" ]  && git downforce || echo "Ambiguous local tracks. Delete one or checkout manually: " && tempfile=`mktemp -t git` && git local-tracks > $tempfile && cat $tempfile' -
         downforce = !git checkout `git tracked | grep \\`git branch-name\\`$ | grep -vi origin | awk '{print $1}' | head -n 1`
         local-tracks = !git tracked | grep `git branch-name` | grep -vi origin | awk '{print $1}'
-        down = !sh -c '[ `git tracked | grep \\`git branch-name\\` | grep -vi origin |  wc -l` == "1" ]  && git downforce || echo "Ambiguous local tracks. Delete one or checkout manually: " && tempfile=`mktemp -t git` && git local-tracks > $tempfile && cat $tempfile' -
-        cor = !sh -c '[ `git tracked | awk '\\''{print $1}'\\'' | grep $1 |  wc -l` == "1" ] &&  git checkout $1 || git remote-branch $1' -
+        co = !sh -c '[ `git tracked | awk '\\''{print $1}'\\'' | grep $1 |  wc -l` == "1" ] &&  git checkout $1 || git remote-branch $1' -
         this = !git init && git add . && git commit -m \"initial commit\"
-        c = commit -m
-        ca = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
-        a = add
-        aa = !git add -u && git add . && git status
-        b = !git branch -a
-        s = status
-        cob = checkout -b
         upr = !git fetch origin && git rebase
-        ir = !git rebase -i
-        r = !git rebase
         today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
         logg = log --graph --pretty=oneline --all --abbrev-commit --decorate
         next = !git add . && git rebase --continue
         ignore=!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore ])
-        co = !sh -c '[ `git tracked | awk '\\''{print $1}'\\'' | grep $1 |  wc -l` == "1" ] &&  git checkout $1 || git remote-branch $1' -
         cc = commit -c HEAD --reset-author
         ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
         theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
