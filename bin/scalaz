@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'etc'
-$scalaVersion = "2.10.0"
-$scalazVersion = "7.0.0-M7"
+$scalaVersion = "2.10"
+$scalazVersion = "7.0.0.RELEASE"
 $repository = "#{Etc.getpwuid.dir}/.m2/repository"
 
 def dep(g, a, v)
@@ -11,9 +11,13 @@ end
 
 classpath = (
   dep("org.scalaz", "scalaz-core_#{$scalaVersion}", $scalazVersion) + ":" +
+  dep("org.scalaz", "scalaz-concurrent_#{$scalaVersion}", $scalazVersion) + ":" +
   dep("org.scalaz", "scalaz-effect_#{$scalaVersion}", $scalazVersion) + ":" +
   dep("org.scalaz", "scalaz-iteratee_#{$scalaVersion}", $scalazVersion)
 )
+
+
 puts "Classpath: #{classpath}"
 imports = "#{File.dirname($PROGRAM_NAME)}/scalaz.imports"
-system("scala -cp #{classpath} -Yrepl-sync -i #{imports}")
+args = ARGV.join(" ")
+system("scala -cp #{classpath} -Yrepl-sync #{args} -i #{imports} ")
