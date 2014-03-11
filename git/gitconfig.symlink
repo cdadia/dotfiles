@@ -52,5 +52,7 @@
 [http]
   sslverify = no
 [user]
-  name = cdadia
-  email = cdadia@gmail.com
+	name = cdadia
+	email = cdadia@gmail.com
+[url "https://"]
+	insteadOf = git://
