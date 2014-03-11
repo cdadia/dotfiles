@@ -35,7 +35,7 @@ export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40
 alias sudo='sudo '
 
 # Get OS X Software Updates, and update Homebrew, and its installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; pushd ~/.vim/bundle/vim-cdadia; git pull; vim +BundleInstall! +qall; vim +PowerlineClearCache +qall; popd'
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; rvm get head; pushd ~/.vim/bundle/vim-cdadia; git pull; vim +BundleInstall! +qall; vim +PowerlineClearCache +qall; popd'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
