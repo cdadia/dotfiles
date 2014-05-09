@@ -28,6 +28,7 @@
         logg = log --graph --pretty=oneline --all --abbrev-commit --decorate
         next = !git add . && git rebase --continue
         ignore=!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore ])
+        down = !sh -c '[ `git tracked | grep \\`git branch-name\\` | grep -vi origin |  wc -l` == "1" ]  && git downforce || echo "Ambiguous local tracks. Delete one or checkout manually: " && tempfile=`mktemp -t git` && git local-tracks > $tempfile && cat $tempfile' -
         cc = commit -c HEAD --reset-author
         ours   = "!f() { git checkout --ours $@ && git add $@; }; f"
         theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
