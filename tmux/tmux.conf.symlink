@@ -22,7 +22,7 @@ set -g mouse-utf8 on
 unbind [
 unbind ]
 unbind p
-setw -g mode-keys vi
+#setw -g mode-keys vi
 set-option -g status-keys vi
 bind-key R source-file ~/.tmux.conf \; display-message "source-file done"
 bind ` copy-mode
