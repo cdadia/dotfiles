@@ -9,6 +9,9 @@ setopt extended_glob
 # source every .zsh file in this rep
 for config_file ($ZSH/**^external/*.zsh) source $config_file
 
+source $ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH/zsh-history-substring-search/zsh-history-substring-search.zsh
+
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
 if [[ -a ~/.localrc ]]
@@ -36,3 +39,7 @@ unsetopt ignoreeof
 export VISUAL=vim
 autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
+
+zmodload zsh/terminfo
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
