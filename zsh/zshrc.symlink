@@ -43,3 +43,5 @@ bindkey -M vicmd v edit-command-line
 zmodload zsh/terminfo
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+#which green >& /dev/null && source "$( green --completion-file )"

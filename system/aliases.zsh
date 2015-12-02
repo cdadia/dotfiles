@@ -71,3 +71,9 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 # System volume stuff
 alias mute="osascript -e 'set volume output muted true'"
 alias unmute="osascript -e 'set volume output muted false'"
+#alias dc="docker-compose "
+#alias dm="docker-machine "
+#alias doc="docker "
+#alias dwt="eval \"'$(docker-machine env dev)' ; docker exec -it '$(docker-compose ps -q web | sed -n 1p)' /bin/bash -c \". perpay/bin/activate; cd /webapps/perpay/perpay; coverage run --source='.' manage.py test; coverage report\"; "
+#pp-re() { dc stop "$@"; dc rm "$@" ; docker rmi icg/"$@":1.0.0 icg/"$@" ; make -C $@ release ; }
+#pp-make() { make -C /$@; }
