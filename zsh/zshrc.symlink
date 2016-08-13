@@ -45,3 +45,7 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 #which green >& /dev/null && source "$( green --completion-file )"
+alias modman="/Users/CD/bin/modman"
+
+fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=(/usr/local/share/zsh/site-functions $fpath)
