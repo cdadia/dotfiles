@@ -32,9 +32,9 @@ bind-key -r C-h select-window -t :-
 bind-key -r C-l select-window -t :+
 bind-key ] last-window
 bind p paste-buffer
-bind -t vi-copy v begin-selection
-bind -t vi-copy y copy-selection
-bind -t vi-copy Escape cancel
+bind -T copy-mode-vi v send-keys -X begin-selection
+bind -T copy-mode-vi y send-keys -X copy-selection
+bind -T copy-mode-vi Escape send-keys -X cancel
 bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 # Use up and down arrows for temporary "maximize" (from https://gist.github.com/3706467)
 bind ] new-window -d -n tmp \; swap-pane -s tmp.0 \; select-window -t tmp

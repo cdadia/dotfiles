@@ -1,7 +1,7 @@
 [hub]
         protocol = https
 [credential]
-        helper = osxkeychain
+	helper = osxkeychain
 [push]
         default = tracking
 [alias]
@@ -65,8 +65,8 @@
 [http]
         sslverify = no
 [user]
-        name = cdadia
-        email = cdadia@gmail.com
+	name = Chirag Dadia
+	email = chirag_dadia@cable.comcast.com
 [url "https://"]
         insteadOf = git://
 [format]
@@ -86,4 +86,4 @@
 [rerere]
   # Remember my merges
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
-  enabled = true
+	enabled = true

@@ -81,5 +81,3 @@ alias doclogs="doc logs -f --tail=500 "
 alias dmc="dm create --virtualbox-disk-size '30000' -d virtualbox "
 alias dmrm="dm rm "
 
-# Vim
-alias vim='/usr/local/Cellar/vim/7.4.1817/bin/vim'
