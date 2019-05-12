@@ -13,6 +13,8 @@ setopt extended_glob
 autoload -Uz compinit
 compinit
 
+autoload -U colors; colors
+source /usr/local/etc/zsh-kubectl-prompt/kubectl.zsh
 
 # Kubectl autocomplete
 source <(kubectl completion zsh)
@@ -76,4 +78,3 @@ export SDKMAN_DIR="/Users/dadiac1/.sdkman"
 [ -s "/Users/dadiac1/.jabba/jabba.sh" ] && source "/Users/dadiac1/.jabba/jabba.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-

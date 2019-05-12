@@ -77,8 +77,23 @@ directory_name(){
   echo "%{$fg_bold[cyan]%}%2~%\/%{$reset_color%}"
 }
 
+kubectl_prompt(){
+  if echo $ZSH_KUBECTL_PROMPT | grep -q "dev"
+  then
+    echo "%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}"
+  elif echo $ZSH_KUBECTL_PROMPT | grep -q "staging"
+  then
+    echo "%{$fg[green]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}"
+  elif echo $ZSH_KUBECTL_PROMPT | grep -q "prod"
+  then
+    echo "%{$fg[red]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}"
+  else
+    echo ""
+  fi
+}
+
 #export PROMPT=$'\n$(rb_prompt) in $(directory_name) $(git_dirty)$(need_push)\n› '
-export PROMPT=$'\n in $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n in $(directory_name) $(git_dirty)$(need_push) $(kubectl_prompt) $(todo)\n› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}$(todo)%{$reset_color%}"
 }
