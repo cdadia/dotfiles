@@ -13,8 +13,10 @@ setopt extended_glob
 autoload -Uz compinit
 compinit
 
+# Kubectl prompt
 autoload -U colors; colors
 source /usr/local/etc/zsh-kubectl-prompt/kubectl.zsh
+zstyle ':zsh-kubectl-prompt:' separator '|'
 
 # Kubectl autocomplete
 source <(kubectl completion zsh)
