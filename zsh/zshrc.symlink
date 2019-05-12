@@ -4,9 +4,18 @@ ZSH_THEME="agnoster"
 export ZSH=$HOME/.dotfiles
 
 # your project folder that we can `c [tab]` to
-export PROJECTS=~/Development
+export PROJECTS=~/repos
 
 setopt extended_glob
+# setopt complete_aliases
+
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -Uz compinit
+compinit
+
+
+# Kubectl autocomplete
+source <(kubectl completion zsh)
 
 # source every .zsh file in this rep
 for config_file ($ZSH/**^external/*.zsh) source $config_file
@@ -20,10 +29,6 @@ if [[ -a ~/.localrc ]]
 then
   source ~/.localrc
 fi
-
-# initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit
 
 # load every completion after autocomplete loads
 for config_file ($ZSH/**^external/completion.sh) source $config_file
@@ -51,3 +56,24 @@ alias modman="/Users/CD/bin/modman"
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(/usr/local/share/zsh/site-functions $fpath)
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/dadiac1/repos/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/dadiac1/repos/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/dadiac1/repos/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/dadiac1/repos/google-cloud-sdk/completion.zsh.inc'; fi
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/dadiac1/.sdkman"
+[[ -s "/Users/dadiac1/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/dadiac1/.sdkman/bin/sdkman-init.sh"
+
+[ -s "/Users/dadiac1/.jabba/jabba.sh" ] && source "/Users/dadiac1/.jabba/jabba.sh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+

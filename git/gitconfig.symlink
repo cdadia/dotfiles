@@ -41,6 +41,7 @@
         status = auto
         branch = auto
         ui = true
+	pager = false
 [color "branch"]
         current = yellow reverse
         local = yellow
@@ -54,6 +55,7 @@
         excludesfile = ~/.gitignore
         editor = vim
         ignorecase = false
+	pager = tig
 [apply]
         whitespace = nowarn
 [mergetool]
