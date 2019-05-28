@@ -7,7 +7,6 @@ export ZSH=$HOME/.dotfiles
 export PROJECTS=~/repos
 
 setopt extended_glob
-# setopt complete_aliases
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -Uz compinit
@@ -80,3 +79,18 @@ export SDKMAN_DIR="/Users/dadiac1/.sdkman"
 [ -s "/Users/dadiac1/.jabba/jabba.sh" ] && source "/Users/dadiac1/.jabba/jabba.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+globalias() {
+   if [[ $LBUFFER =~ ' [A-Z0-9]+$' ]]; then
+     zle _expand_alias
+     zle expand-word
+   fi
+   zle self-insert
+}
+
+zle -N globalias
+
+bindkey " " globalias
+bindkey "^ " magic-space           # control-space to bypass completion
+bindkey -M isearch " " magic-space # normal space during searches
+if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
