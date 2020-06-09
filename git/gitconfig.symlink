@@ -1,7 +1,7 @@
 [hub]
         protocol = https
 [credential]
-  helper = osxkeychain
+	helper = osxkeychain
 [push]
         default = tracking
 [alias]

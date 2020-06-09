@@ -6,6 +6,6 @@ export GROOVY_HOME="/usr/local/opt/groovy/libexec"
 
 export JAVA_HOME=$(/usr/libexec/java_home)
 
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:$HOME/anaconda3/bin:$HOME/.local/bin
 
 export GOPATH=$HOME/go/
