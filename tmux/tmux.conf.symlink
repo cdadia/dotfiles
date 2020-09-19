@@ -6,7 +6,7 @@ bind C-] send-prefix
 # bind -n C-k send-keys -R \; clear-history
 
 set -g default-terminal "screen-256color"
-
+set-option -g status-right-length 250
 set-option -g display-time 5000
 
 set -g default-command "reattach-to-user-namespace -l zsh"
