@@ -1,0 +1,28 @@
+{
+  "default_module": "powerline.segments.common",
+  "segments": {
+    "right": [
+      {
+        "function": "powerline.segments.common.players.spotify",
+        "name": "player",
+        "args": {
+          "format": "{state_symbol} {artist} - {title:.10} ({total})"
+        }
+      },
+      {
+        "function": "powerline.segments.common.time.date"
+      },
+      {
+        "function": "powerline.segments.common.time.date",
+        "name": "time",
+        "args": {
+          "format": "%H:%M",
+          "istime": true
+        }
+      },
+      {
+        "function": "powerline.segments.common.net.external_ip"
+      }
+    ]
+  }
+}

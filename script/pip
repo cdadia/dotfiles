@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# PIP
+#
+# This installs some of the common dependencies needed (or at least desired)
+# using pip.
+
+# Check for pip
+if test ! $(which pip)
+then
+  echo "  x You should probably install pip first:"
+  echo "    brew install python"
+  exit
+else
+  echo "  + pip found."
+fi
+
+pip install -U pip
+
+pip install cachetools
+pip install google-api-core
+pip install google-auth
+pip install google-cloud-bigquery
+pip install google-cloud-core
+pip install google-resumable-media
+pip install googleapis-common-protos
+pip install powerline-status
+pip install setuptools
+pip install virtualenv
+pip install websocket-client
+pip install wheel
+
