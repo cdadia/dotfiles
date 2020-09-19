@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# sdkman
+#
+# This installs sdkman.
+
+# Check for sdkman
+if test ! $(which sdkman)
+then
+  exit
+else
+  echo "  + sdkman found."
+fi
+
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+sdk version
