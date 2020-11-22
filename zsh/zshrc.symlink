@@ -6,6 +6,9 @@ export ZSH=$HOME/.dotfiles
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/repos
 
+# set cloudsdk to use python2
+export CLOUDSDK_PYTHON=python2
+
 setopt extended_glob
 setopt auto_cd
 

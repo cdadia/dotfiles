@@ -7,42 +7,60 @@ else
   GIT="/usr/bin/git"
 fi
 
-git_branch() {
-  echo $($GIT symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
-}
+# Echoes information about Git repository status when inside a Git repository
+git_info() {
 
-git_dirty() {
-  st=$($GIT status 2>/dev/null | tail -n 1)
-  if [[ $st == "" ]]
-  then
-    echo ""
-  else
-    if [[ $st == "nothing to commit (working directory clean)" ]]
-    then
-      echo "on %{$fg_bold[green]%}$(git_prompt_info)%{$reset_color%}"
-    else
-      echo "on %{$fg_bold[red]%}$(git_prompt_info)%{$reset_color%}"
-    fi
+  # Exit if not inside a Git repository
+  ! git rev-parse --is-inside-work-tree > /dev/null 2>&1 && return
+
+  # Git branch/tag, or name-rev if on detached head
+  local GIT_LOCATION=${$(git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD)#(refs/heads/|tags/)}
+
+  local AHEAD="%{$fg[red]%}⇡NUM%{$reset_color%}"
+  local BEHIND="%{$fg[cyan]%}⇣NUM%{$reset_color%}"
+  local MERGING="%{$fg[magenta]%}⚡︎%{$reset_color%}"
+  local UNTRACKED="%{$fg[red]%}●%{$reset_color%}"
+  local MODIFIED="%{$fg[yellow]%}●%{$reset_color%}"
+  local STAGED="%{$fg[green]%}●%{$reset_color%}"
+
+  local -a DIVERGENCES
+  local -a FLAGS
+
+  local NUM_AHEAD="$(git log --oneline @{u}.. 2> /dev/null | wc -l | tr -d ' ')"
+  if [ "$NUM_AHEAD" -gt 0 ]; then
+    DIVERGENCES+=( "${AHEAD//NUM/$NUM_AHEAD}" )
   fi
-}
 
-git_prompt_info () {
- ref=$($GIT symbolic-ref HEAD 2>/dev/null) || return
-# echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
- echo "${ref#refs/heads/}"
-}
-
-unpushed () {
-  $GIT cherry -v @{upstream} 2>/dev/null
-}
-
-need_push () {
-  if [[ $(unpushed) == "" ]]
-  then
-    echo " "
-  else
-    echo " with %{$fg_bold[magenta]%}unpushed%{$reset_color%} "
+  local NUM_BEHIND="$(git log --oneline ..@{u} 2> /dev/null | wc -l | tr -d ' ')"
+  if [ "$NUM_BEHIND" -gt 0 ]; then
+    DIVERGENCES+=( "${BEHIND//NUM/$NUM_BEHIND}" )
   fi
+
+  local GIT_DIR="$(git rev-parse --git-dir 2> /dev/null)"
+  if [ -n $GIT_DIR ] && test -r $GIT_DIR/MERGE_HEAD; then
+    FLAGS+=( "$MERGING" )
+  fi
+
+  if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
+    FLAGS+=( "$UNTRACKED" )
+  fi
+
+  if ! git diff --quiet 2> /dev/null; then
+    FLAGS+=( "$MODIFIED" )
+  fi
+
+  if ! git diff --cached --quiet 2> /dev/null; then
+    FLAGS+=( "$STAGED" )
+  fi
+
+  local -a GIT_INFO
+  GIT_INFO+=( "\033[38;5;15m±" )
+  [ -n "$GIT_STATUS" ] && GIT_INFO+=( "$GIT_STATUS" )
+  [[ ${#DIVERGENCES[@]} -ne 0 ]] && GIT_INFO+=( "${(j::)DIVERGENCES}" )
+  [[ ${#FLAGS[@]} -ne 0 ]] && GIT_INFO+=( "${(j::)FLAGS}" )
+  GIT_INFO+=( "\033[38;5;15m$GIT_LOCATION%{$reset_color%}" )
+  echo "${(j: :)GIT_INFO}"
+
 }
 
 directory_name(){
@@ -102,7 +120,7 @@ gcloud_ps1() {
   echo "${GCLOUD_PS1}"
 }
 
-export PROMPT=$'\n in $(directory_name) $(git_dirty)$(need_push) $(gcloud_ps1) $(kubectl_prompt)\n› '
+export PROMPT=$'\n in $(directory_name) $(git_info) $(gcloud_ps1) $(kubectl_prompt)\n› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
