@@ -1,7 +1,9 @@
 alias reload!='. ~/.zshrc'
 alias k='kubectl'
+alias kctx="kubectx"
+alias kns="kubens"
 alias gcl='gcloud'
-alias fat='find . -type f -name "application-default.yaml" -exec yq r {} "kafka.topics" \; | grep name: | tr -s " " | cut -d " " -f 3 | sort -u | nl'
+alias ft='find . -type f -name "application-default.yaml" -exec yq r {} "kafka.topics" \; | grep name: | tr -s " " | cut -d " " -f 3 | sort -u | nl'
 alias dev='gcloud beta container clusters get-credentials rental-dev-v1 --region us-east4 --project rental-dev'
 alias stage='gcloud beta container clusters get-credentials rental-staging-v1 --region us-east4 --project rental-staging'
 alias prod='gcloud beta container clusters get-credentials rental-prod-v1 --region us-east4 --project rental-prod'
@@ -18,6 +20,10 @@ alias rental-prod='gcloud beta container clusters get-credentials rental-prod-v1
 alias rental-prod-ctl='gcloud beta container clusters get-credentials rental-prod-ctl-v1 --region us-east4-c --project rental-prod'
 alias rental-ds='gcloud beta container clusters get-credentials us-east1-nuuly-4c1e44f4-gke --region us-east1-b --project rental-ds'
 alias deployer='k -n ctl exec deployment/deployer -it -- /bin/bash'
-function gpf(){
-  kubectl -n $1 port-forward $2 $3
-}
+alias ke='k exec -ti'
+alias kgp='k get pods'
+alias kd='k describe'
+alias kgd='k get deployment'
+alias gbdry='git branch --merged | egrep -v "(^\*|master|main|dev|upstream)"'
+alias gbdel='git branch --merged | egrep -v "(^\*|master|main|dev|upstream)" | xargs git branch -d'
+alias repos='cd ~/repos'

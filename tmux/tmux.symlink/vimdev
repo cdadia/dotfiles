@@ -1,2 +1,2 @@
 selectp -t 0
-run "~/.tmux/split-cwd.rb -h -p 65 && tmux selectp -t 0 && ~/.tmux/split-cwd.rb -v -p 25 && selectp -t 0"
+run "~/.tmux/starttmux.sh"
