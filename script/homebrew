@@ -38,6 +38,11 @@ brew install ctags
 brew install dockermachine
 brew install emacs-mac
 brew install fontconfig
+brew install --cask font-caskaydia-cove-nerd-fontconfig
+brew install --cask font-fira-code-nerd-font
+brew install --cask font-iosevka-nerd-font
+brew install --cask font-jetbrains-mono-nerd-font
+brew install --cask font-victor-mono-nerd-font
 brew install gh
 brew install git
 brew install neofetch
@@ -100,6 +105,45 @@ brew install yq
 brew install zsh
 brew install zsh-kubectl-prompt
 brew install zsh-syntax-highlight
+
+# Install other GUI based apps
+# To check for bundle id run
+# mdls /path/to/app | grep kMDItemCFBundleIdentifier
+
+# Check for VSCode
+if test ! [ $(mdfind "kMDItemCFBundleIdentifier == com.microsoft.VSCode") ];
+then
+  echo "  Installing VSCode for you."
+  brew install --cask visual-studio-code
+fi
+
+# Check for Firefox
+if test ! [ $(mdfind "kMDItemCFBundleIdentifier == org.mozilla.firefox") ];
+then
+  echo "  Installing Firefox for you."
+  brew install --cask firefox
+fi
+
+# Check for google-chrome
+if test ! [ $(mdfind "kMDItemCFBundleIdentifier == com.google.Chrome") ];
+then
+  echo "  Installing google-chrome for you."
+  brew install --cask google-chrome
+fi
+
+# Check for postman
+if test ! [ $(mdfind "kMDItemCFBundleIdentifier == com.postmanlabs.mac") ];
+then
+  echo "  Installing postman for you."
+  brew install --cask postman
+fi
+
+# Check for slack
+if test ! [ $(mdfind "kMDItemCFBundleIdentifier == com.tinyspeck.slackmacgap") ];
+then
+  echo "  Installing slack for you."
+  brew install --cask slack
+fi
 
 #brew install giter8
 #brew install gnupg
