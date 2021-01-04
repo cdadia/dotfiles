@@ -1,7 +1,7 @@
 [hub]
         protocol = https
 [credential]
-	helper = osxkeychain
+        helper = osxkeychain
 [push]
         default = tracking
 [alias]
@@ -40,7 +40,7 @@
         status = auto
         branch = auto
         ui = true
-  pager = false
+        pager = false
 [color "branch"]
         current = yellow reverse
         local = yellow
@@ -51,10 +51,11 @@
         old = red
         new = green
 [core]
-        excludesfile = ~/.gitignore
+        excludesfile = ~/.gitignore-global
         editor = vim
         ignorecase = false
-  pager = tig
+        pager = tig
+        whitespace = -trailing-space,-space-before-tab
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -66,8 +67,8 @@
 [http]
         sslverify = no
 [user]
-  name = Chirag Dadia
-  email = cdadia@urbn.com
+        name = Chirag Dadia
+        email = cdadia@urbn.com
 [url "https://"]
         insteadOf = git://
 [format]
@@ -80,11 +81,19 @@
         verbosity = 1
         tool = mvimdiff
 [diff]
-  # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
-  # instead of a/b/c/d as prefixes for patches
-  mnemonicprefix = true
-  algorithm = patience
+        # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
+        # instead of a/b/c/d as prefixes for patches
+        mnemonicprefix = true
+        algorithm = histogram
+        compactionHeuristic = 1
+        colorMoved = zebra
 [rerere]
-  # Remember my merges
-  # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
-  enabled = true
+      # Remember my merges
+      # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
+      enabled = true
+[pull]
+      ff = only
+[advice]
+      statusHints = true
+[rebase]
+      autosquash = true

@@ -1,6 +1,5 @@
 autoload colors && colors
-# cheers, @ehrenmurdick
-# http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
+
 if [ -n "`which git` 2> /dev/null" ]; then
   GIT="git"
 else
@@ -104,8 +103,8 @@ gcloudoff() {
 gcloud_ps1() {
   # Terminal colors
   local reset='\033[0m'
-  local blue='\033[1m\033[34m'
-  local green='\033[1m\033[32m'
+  local blue='\033[0;34m'
+  local cyan='\033[0;36m'
 
   GCLOUD_PS1=""
   if [[ ${GCLOUD_PS1_ENABLE} == true ]]; then
@@ -114,13 +113,37 @@ gcloud_ps1() {
       GCLOUD_PS1+="${blue}${GCLOUD_PS1_SYMBOL} "
     fi
     ACTIVE_CONF=$(${GCLOUD_BIN} config configurations list --format='value(name)' --filter='IS_ACTIVE=true' 2> /dev/null)
-    GCLOUD_PS1+="${green}$ACTIVE_CONF${reset})"
+    GCLOUD_PS1+="${cyan}$ACTIVE_CONF${reset})"
   fi
 
   echo "${GCLOUD_PS1}"
 }
 
-export PROMPT=$'\n in $(directory_name) $(git_info) $(gcloud_ps1) $(kubectl_prompt)\n› '
+CCLOUD_PS1_ENABLE="${CCLOUD_PS1_ENABLE:-false}"
+
+ccloudon() {
+  CCLOUD_PS1_ENABLE=true
+}
+
+ccloudoff() {
+  CCLOUD_PS1_ENABLE=false
+}
+
+
+ccloud_ps1() {
+
+  CCLOUD_PS1=""
+  # Configure ccloud prompt if configured
+  if [ -n "`which ccloud` 2> /dev/null" ]; then
+    if [[ ${CCLOUD_PS1_ENABLE} == true ]]; then
+      CCLOUD_PS1+=$(ccloud prompt 2> /dev/null)
+    fi
+  fi
+
+  echo "$CCLOUD_PS1"
+}
+
+export PROMPT=$'\n in $(directory_name) $(git_info) $(gcloud_ps1) $(kubectl_prompt) $(ccloud_ps1)\n› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
