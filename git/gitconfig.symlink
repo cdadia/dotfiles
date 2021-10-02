@@ -3,7 +3,7 @@
 [credential]
         helper = osxkeychain
 [push]
-        default = tracking
+	default = simple
 [alias]
         co = checkout
         promote = !$ZSH/bin/git-promote
