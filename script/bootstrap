@@ -15,4 +15,4 @@ rake install
 . script/sdkman
 
 # Install fonts
-. ../fonts/install.sh
+. fonts/install.sh
