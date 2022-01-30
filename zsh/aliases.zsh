@@ -35,3 +35,4 @@ alias kgd='k get deployment'
 alias gbdry='git branch --merged | egrep -v "(^\*|master|main|dev|upstream)"'
 alias gbdel='git branch --merged | egrep -v "(^\*|master|main|dev|upstream)" | xargs git branch -d'
 alias repos='cd ~/repos'
+alias cat=bat
