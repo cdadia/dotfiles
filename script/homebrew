@@ -32,12 +32,15 @@ brew install vim
 brew install ack
 brew install asciinema
 brew install autojump
+brew install bat
+brew install eth-p/software/bat-extras-batgrep
 brew install clisp
 brew install clojure
 brew install ctags
 brew install dockermachine
 brew install emacs-mac
 brew install fontconfig
+brew install fzf
 brew install --cask font-caskaydia-cove-nerd-fontconfig
 brew install --cask font-fira-code-nerd-font
 brew install --cask font-iosevka-nerd-font
@@ -75,7 +78,7 @@ brew install kotlin
 brew install kt
 brew install kubectx
 brew install kubernetes-cli
-brew install kubetail
+brew tap johanhaleby/kubetail && brew install kubetail --with-short-names
 brew install kustomize
 brew install lame
 brew install lazygit
