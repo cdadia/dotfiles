@@ -134,9 +134,9 @@ ccloud_ps1() {
 
   CCLOUD_PS1=""
   # Configure ccloud prompt if configured
-  if [ -n "`which ccloud` 2> /dev/null" ]; then
+  if [ -n "`which confluent` 2> /dev/null" ]; then
     if [[ ${CCLOUD_PS1_ENABLE} == true ]]; then
-      CCLOUD_PS1+=$(ccloud prompt 2> /dev/null)
+      CCLOUD_PS1+=$(confluent prompt -f '({{fgcolor "blue" "Confluent"}} | {{attr "bold" "%a"}} | {{fgcolor "white" "%e" }} | {{fgcolor "white" "%E" }} | %k | %K)' 2> /dev/null)
     fi
   fi
 

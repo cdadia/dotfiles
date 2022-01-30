@@ -28,3 +28,8 @@ alias kgd='k get deployment'
 alias gbdry='git branch --merged | egrep -v "(^\*|master|main|dev|upstream)"'
 alias gbdel='git branch --merged | egrep -v "(^\*|master|main|dev|upstream)" | xargs git branch -d'
 alias repos='cd ~/repos'
+alias ksql-stage-resale='docker run --rm -it confluentinc/ksqldb-cli:0.22.0 ksql -u FHTCJ5MY7YUG4RL2 -p Bz9LZG3+tqtpQfsZusSI9PkFYXD1GK19Z1u3m7lCw1V8FiZxlFeORPgEkTl5bGsB "https://pksqlc-r5o8p.us-east4.gcp.confluent.cloud:443"'
+alias ksql-dev-resale='docker run --rm -it confluentinc/ksqldb-cli:0.22.0 ksql -u 2RMTG2EE4JLOVZND -p jUPFMBk/W1RqLazNbvZLSPSTWXMa/UNFlr1scvfvZdxRY96m4A7PKaXJbd3zUWFZ "https://pksqlc-vrd8j.us-east4.gcp.confluent.cloud:443"'
+alias ksql-prod-resale='docker run --rm -it confluentinc/ksqldb-cli:0.22.0 ksql -u ZSCRXWPLKLEH56HR -p a/tHlJz/6D6RPVVNE3lG9H2rcuYc7oVocVryu5qzzb2ihyL8VCxOBUCVWVzm4UTv "https://pksqlc-gng2m.us-east4.gcp.confluent.cloud:443"'
+alias ksql-dev-rental='docker run --rm -it confluentinc/ksqldb-cli:0.22.0 ksql -u M74ZC4KFX33MMRVC -p CAXxTlDe5UEqpPa5ZbbxWyYepD6uw8O4x98fr/Ya75XChKxuTWxLnOYH9gA04Jcp "https://pksqlc-6orx2.us-east4.gcp.confluent.cloud:443"'
+
