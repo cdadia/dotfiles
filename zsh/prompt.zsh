@@ -69,13 +69,13 @@ directory_name(){
 kubectl_prompt(){
   if echo $ZSH_KUBECTL_PROMPT | grep -q "dev"
   then
-    echo "%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}"
+    echo "%{$fg[blue]%}(⛵ $ZSH_KUBECTL_PROMPT)%{$reset_color%}"
   elif echo $ZSH_KUBECTL_PROMPT | grep -q "staging"
   then
-    echo "%{$fg[green]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}"
+    echo "%{$fg[green]%}(⛵ $ZSH_KUBECTL_PROMPT)%{$reset_color%}"
   elif echo $ZSH_KUBECTL_PROMPT | grep -q "prod"
   then
-    echo "%{$fg[red]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}"
+    echo "%{$fg[red]%}(⛵ $ZSH_KUBECTL_PROMPT)%{$reset_color%}"
   else
     echo ""
   fi
@@ -132,11 +132,12 @@ ccloudoff() {
 
 ccloud_ps1() {
 
+  setopt prompt_subst
   CCLOUD_PS1=""
   # Configure ccloud prompt if configured
   if [ -n "`which confluent` 2> /dev/null" ]; then
     if [[ ${CCLOUD_PS1_ENABLE} == true ]]; then
-      CCLOUD_PS1+=$(confluent prompt -f '({{fgcolor "blue" "Confluent"}} | {{attr "bold" "%a"}} | {{fgcolor "white" "%e" }} | {{fgcolor "white" "%E" }} | %k | %K)' 2> /dev/null)
+      CCLOUD_PS1+=$(confluent prompt -f '({{fgcolor "white" "✸"}} | {{attr "bold" "%a"}} | {{fgcolor "white" "%e" }} | {{fgcolor "white" "%E" }} | %k)' 2> /dev/null)
     fi
   fi
 
@@ -148,7 +149,7 @@ set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
 
-precmd() {
-  title "zsh" "%m" "%55<...<%~"
-  set_prompt
-}
+# precmd() {
+#  title "zsh" "%m" "%55<...<%~"
+#  set_prompt
+# }
