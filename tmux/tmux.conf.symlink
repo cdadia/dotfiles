@@ -74,4 +74,4 @@ bind-key -T root WheelUpPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "
 bind-key -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; send-keys -M"
 
 run-shell "powerline-daemon -q"
-source "/Users/dadiac1/repos/powerline/powerline-git/powerline/bindings/tmux/powerline.conf"
+source "${HOME}/repos/powerline/powerline/bindings/tmux/powerline.conf"

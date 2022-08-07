@@ -42,7 +42,7 @@ values."
      java
      clojure
      go
-     (conda :variables conda-anaconda-home "/Users/dadiac1/anaconda3")
+     (conda :variables conda-anaconda-home "${HOME}/anaconda3")
      (python :variables python-backend 'anaconda)
      javascript
      themes-megapack

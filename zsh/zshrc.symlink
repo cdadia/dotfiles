@@ -7,7 +7,7 @@ export ZSH=$HOME/.dotfiles
 export PROJECTS=~/repos
 
 # set cloudsdk to use python2
-export CLOUDSDK_PYTHON=python2
+# export CLOUDSDK_PYTHON=python2
 
 setopt extended_glob
 setopt auto_cd
@@ -32,12 +32,12 @@ lfcd () {
 bindkey -s '^o' 'lfcd\n'
 
 # Kubectl prompt
-autoload -U colors; colors
-source /usr/local/etc/zsh-kubectl-prompt/kubectl.zsh
-zstyle ':zsh-kubectl-prompt:' separator '|'
+# autoload -U colors; colors
+# source /usr/local/etc/zsh-kubectl-prompt/kubectl.zsh
+# zstyle ':zsh-kubectl-prompt:' separator '|'
 
 # Kubectl autocomplete
-source <(kubectl completion zsh)
+# source <(kubectl completion zsh)
 
 # source every .zsh file in this rep
 for config_file ($ZSH/**^external/*.zsh) source $config_file
@@ -62,7 +62,7 @@ fi
 [[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" ]]
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting shortcut to this dotfiles path is $ZSH
+# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting shortcut to this dotfiles path is $ZSH
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 unsetopt ignoreeof
 export VISUAL=vim
@@ -85,11 +85,8 @@ fpath=(/usr/local/share/zsh/site-functions $fpath)
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/dadiac1/.sdkman"
-[[ -s "/Users/dadiac1/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/dadiac1/.sdkman/bin/sdkman-init.sh"
 
-[ -s "/Users/dadiac1/.jabba/jabba.sh" ] && source "/Users/dadiac1/.jabba/jabba.sh"
+# [ -s "${HOME}/.jabba/jabba.sh" ] && source "${HOME}/.jabba/jabba.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -109,12 +106,19 @@ bindkey -M isearch " " magic-space # normal space during searches
 if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/dadiac1/repos/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dadiac1/repos/google-cloud-sdk/path.zsh.inc'; fi
+# if [ -f "${HOME}/repos/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/repos/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/dadiac1/repos/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dadiac1/repos/google-cloud-sdk/completion.zsh.inc'; fi
+# if [ -f "${HOME}/repos/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/repos/google-cloud-sdk/completion.zsh.inc"; fi
 
-export PATH="/usr/local/opt/python@3.7/bin:$PATH"
+export PATH="/usr/local/opt/python@3.9/bin:$PATH"
+
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="${HOME}/.sdkman"
+[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
+
+
